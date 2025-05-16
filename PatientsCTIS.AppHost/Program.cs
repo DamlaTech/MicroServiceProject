@@ -4,4 +4,6 @@ builder.AddProject<Projects.API_Users>("api-users");
 
 builder.AddProject<Projects.API_Identities>("api-identites");
 
+builder.AddProject<Projects.API_Gateway>("api-gateway");
+
 builder.Build().Run();

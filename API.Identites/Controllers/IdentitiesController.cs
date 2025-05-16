@@ -79,9 +79,23 @@ namespace API.Identities.Controllers
             }
             catch (Exception exception)
             {
-                _logger.LogError("UsersToken Exception: " + exception.Message);
+                _logger.LogError("Token Exception: " + exception.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new CommandResponse(false, "An exception occured during UsersToken."));
             }
+        }
+
+        //Refresh Token:
+        [HttpPost, Route("/api/[action]"), AllowAnonymous] // api/RefreshToken
+        public async Task<IActionResult> RefreshToken(RefreshTokenRequest request)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _mediator.Send(request);
+                if (response.IsSuccessful)
+                    return Ok(response);
+                ModelState.AddModelError("UsersRefreshToken", response.Message);
+            }
+            return BadRequest(new CommandResponse(false, string.Join("|", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage))));
         }
 
         //[HttpPost, Route("/api/[action]"), AllowAnonymous] // api/RefreshToken
