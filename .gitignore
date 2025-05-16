@@ -1,0 +1,27 @@
+####################################
+# Visual Studio & .NET build files #
+####################################
+# VS user-specific
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+TestResults/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+# Rider / Resharper
+*.DotSettings*
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
